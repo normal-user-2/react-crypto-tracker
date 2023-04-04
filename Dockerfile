@@ -1,8 +1,9 @@
-FROM node:16 AS builder
+FROM node:14 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+ENV BUILD_PATH './build'
 RUN npm run build
 
 FROM nginx:alpine AS prod
